@@ -215,7 +215,23 @@ animation-duration:2s;
 	60% {transform: translateY(-15px);}
 }
 
-
 .main-content {
-  background-color: 
+  top: 585px;
+  padding: 0;
+  margin: 0;
+  left: 0px;
+  position: absolute;
+  float: left;
+  width: 100%;
+  z-index: -10000;
+  background-color: #ceffd0;
+}
+
+.block {
+  width: 95%
+  background-color: #a2dda1;
+}
+
+.content {
+  bottom: 0;
 }
