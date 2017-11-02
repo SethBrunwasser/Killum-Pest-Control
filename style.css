@@ -229,6 +229,16 @@ animation-duration:2s;
   background-color: #ffffff;
 }
 
+.testimonialblock {
+  position: relative;
+  height: 170%;
+  margin-top: 3.5%;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+  border-radius: 10px;
+  background-color: #ffffff;
+}
+
 .content {
   font-family: 'Lato', sans-serif;
   padding-top: 2%;
