@@ -66,14 +66,13 @@
 .navbar .links a {
   position: relative;
   float: left;
-
   display: block;
   color: #333;
   text-align: center;
-  padding: 14px 16px;
+  padding: 14px 5px;
   text-decoration: none;
   font-family: 'Work Sans', sans-serif;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .contactinfo {
@@ -239,6 +238,16 @@ animation-duration:2s;
   background-color: #ffffff;
 }
 
+.servicesblock {
+  position: relative;
+  height: 220%;
+  margin-top: 3.5%;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+  border-radius: 10px;
+  background-color: #ffffff;
+}
+
 .content {
   font-family: 'Lato', sans-serif;
   padding-top: 2%;
@@ -272,4 +281,17 @@ animation-duration:2s;
   width: auto;
   max-width: 50%;
   max-height: 350;
+}
+
+.content table {
+  border-collapse: collapse;
+  width: 100%;
+}
+.content td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+.content tr:nth-child(even) {
+  background-color: #dddddd;
 }
