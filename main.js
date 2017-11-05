@@ -51,3 +51,18 @@ var setVideoDimensions = function () {
 
 video.addEventListener('loadedmetadata', setVideoDimensions, false);
 window.addEventListener('resize', setVideoDimensions, false);
+
+
+// Service Estimate Form Validation
+const gen_validatorv4.js = require('gen_validatorv4.js');
+var formValidator = new Validator("estimateform");
+formValidator.addValidation("name", "req", "Please enter a name");
+
+// Submit function
+function submitform()
+{
+  if(document.estimateform.onsubmit())
+  {
+    document.estimateform.submit();
+  }
+}
