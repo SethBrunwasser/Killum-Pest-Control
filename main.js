@@ -54,15 +54,22 @@ window.addEventListener('resize', setVideoDimensions, false);
 
 
 // Service Estimate Form Validation
-const gen_validatorv4.js = require('gen_validatorv4.js');
-var formValidator = new Validator("estimateform");
-formValidator.addValidation("name", "req", "Please enter a name");
-
+function validation()
+{
+  var form = document.forms['estimateform'];
+  if (form.name.value == "")
+  {
+    sfm_show_error_msg("Please enter a name")
+    return false;
+  } else {
+    return true;
+  }
+}
 // Submit function
 function submitform()
 {
-  if(document.estimateform.onsubmit())
+  if(validation())
   {
-    document.estimateform.submit();
+    document.getElementById("submit").onclick = function() { location.href = "index.html";}
   }
 }
