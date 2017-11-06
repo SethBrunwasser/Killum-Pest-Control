@@ -54,7 +54,7 @@ window.addEventListener('resize', setVideoDimensions, false);
 
 
 // Service Estimate Form Validation
-function validation()
+function validateform()
 {
   var form = document.forms['estimateform'];
   if (form.name.value == "")
