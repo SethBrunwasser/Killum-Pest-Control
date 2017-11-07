@@ -59,7 +59,7 @@ function validateform()
   var form = document.forms['estimateform'];
   if (form.name.value == "")
   {
-    sfm_show_error_msg("Please enter a name")
+    alert("Please enter a name")
     return false;
   } else {
     return true;
@@ -68,8 +68,13 @@ function validateform()
 // Submit function
 function submitform()
 {
-  if(validation())
+  if(validateform() == true)
   {
-    document.getElementById("submit").onclick = function() { location.href = "index.html";}
+    function redirect()
+    {
+      setTimeout('window.location.href="submitted.html"', 0);;
+    }
+
+    redirect();
   }
 }
