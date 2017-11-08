@@ -56,7 +56,7 @@ window.addEventListener('resize', setVideoDimensions, false);
 // Service Estimate Form Validation
 function validateform()
 {
-  var passingFlag = 1;
+  var passingFlag = true;
   var form = document.forms['estimateform'];
 
   name = form.name.value;
@@ -67,19 +67,18 @@ function validateform()
   if (name == "")
   {
     alert("Please enter a valid name")
-    passingFlag = 0;
+    passingFlag = false;
   } else if (email == "" || !email.includes('@'))
   {
     alert("Please enter a valid email")
-    passingFlag = 0;
+    passingFlag = false;
   } else if (phone == "" || isNaN(phone))
   {
     alert("Please enter a valid phone number with only numerical digits. \n Ex: 4801111111")
-    passingFlag = 0;
+    passingFlag = false;
   }
 
-  if (passingFlag == 1) { return true; } else { return false; }
-
+  return passingFlag;
 }
 // Submit function
 function submitform()
