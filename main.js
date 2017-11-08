@@ -62,7 +62,7 @@ function validateform()
   name = form.name.value;
   email = form.email.value;
   phone = form.phone.value;
-
+  subject = form.subject.value;
 
   if (name == "")
   {
@@ -75,6 +75,10 @@ function validateform()
   } else if (phone == "" || isNaN(phone))
   {
     alert("Please enter a valid phone number with only numerical digits. \n Ex: 4801111111")
+    passingFlag = false;
+  } else if (subject == "")
+  {
+    alert("Please enter a subject")
     passingFlag = false;
   }
 
