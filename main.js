@@ -61,14 +61,20 @@ function validateform()
 
   name = form.name.value;
   email = form.email.value;
+  phone = form.phone.value;
+
 
   if (name == "")
   {
     alert("Please enter a valid name")
     passingFlag = 0;
-  } else if (email == "")
+  } else if (email == "" || !email.includes('@'))
   {
     alert("Please enter a valid email")
+    passingFlag = 0;
+  } else if (phone == "" || isNaN(phone))
+  {
+    alert("Please enter a valid phone number with only numerical digits. \n Ex: 4801111111")
     passingFlag = 0;
   }
 
