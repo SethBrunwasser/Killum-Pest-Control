@@ -56,14 +56,24 @@ window.addEventListener('resize', setVideoDimensions, false);
 // Service Estimate Form Validation
 function validateform()
 {
+  var passingFlag = 1;
   var form = document.forms['estimateform'];
-  if (form.name.value == "")
+
+  name = form.name.value;
+  email = form.email.value;
+
+  if (name == "")
   {
-    alert("Please enter a name")
-    return false;
-  } else {
-    return true;
+    alert("Please enter a valid name")
+    passingFlag = 0;
+  } else if (email == "")
+  {
+    alert("Please enter a valid email")
+    passingFlag = 0;
   }
+
+  if (passingFlag == 1) { return true; } else { return false; }
+
 }
 // Submit function
 function submitform()
@@ -72,7 +82,7 @@ function submitform()
   {
     function redirect()
     {
-      setTimeout('window.location.href="submitted.html"', 0);;
+      setTimeout('window.location.href="submitted.html"', 0);
     }
 
     redirect();
