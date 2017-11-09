@@ -63,6 +63,7 @@ function validateform()
   email = form.email.value;
   phone = form.phone.value;
   subject = form.subject.value;
+  message = form.message.value;
 
   if (name == "")
   {
@@ -79,6 +80,10 @@ function validateform()
   } else if (subject == "")
   {
     alert("Please enter a subject")
+    passingFlag = false;
+  } else if (message = "")
+  {
+    alert("Please enter a message")
     passingFlag = false;
   }
 
