@@ -1,7 +1,7 @@
 
 <head>
-  <link rel="stylesheet" type="text/css" href="style.css">
-  <script type="text/javascript" src="main.js"></script>
+  <link rel="stylesheet" type="text/css" href={{ url_for('static', filename='style.css') }}>
+  <script type="text/javascript" src={{ url_for('static', filename='main.js') }}></script>
 
   <link href="https://fonts.googleapis.com/css?family=Work+Sans:200" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
@@ -16,11 +16,11 @@
       <div id="pestcontrolscottsdalecolor"> Pest Control Scottsdale LLC</div>
     </div>
     <div class="links">
-      <a href="index.html">home</a>
+      <a href={{ url_for('index') }}>home</a>
       <a href="#about">about</a>
-      <a href="services.html">services</a>
-      <a href="contact.html">contact</a>
-      <a href="testimonials.html">testimonials</a>
+      <a href={{ url_for('services') }}>services</a>
+      <a href={{ url_for('contact') }}>contact</a>
+      <a href={{ url_for('testimonials') }}>testimonials</a>
 
     </div>
     <div class="contactinfo">
@@ -34,7 +34,7 @@
 
   <div class="video-container">
     <video autoplay muted loop>
-      <source src="C:\Users\Seth B\Desktop\Web Dev\bees.mp4" type="video/mp4">
+      <source src={{ url_for("static", filename='bees.mp4') }} type="video/mp4">
     </video>
   </div>
 
