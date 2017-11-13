@@ -53,23 +53,6 @@ video.addEventListener('loadedmetadata', setVideoDimensions, false);
 window.addEventListener('resize', setVideoDimensions, false);
 
 
-// Send email
-function sendMail()
-{
-
-}
-
-// Send text
-function sendText()
-{
-  // Use textbelt to send outgoing text messages
-  var text = require('textbelt');
-  // United States
-  text.send('4802762504', 'Killum Pest Control Estimate', 'us', function(err) {
-
-  })
-
-}
 
 // Service Estimate Form Validation
 function validateform()
@@ -105,7 +88,7 @@ function validateform()
     passingFlag = false;
   }
 
-  return passingFlag;
+  //return passingFlag;
 }
 
 // Submit function
@@ -114,14 +97,11 @@ function submitform()
   if(validateform() == true)
   {
 
-
-
     function redirect()
     {
-      setTimeout('window.location.href="submitted.html"', 0);
+      setTimeout('window.location.href=submitted', 0);
     }
 
     redirect();
-    sendText();
   }
 }
