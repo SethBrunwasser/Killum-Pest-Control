@@ -1,6 +1,18 @@
+import sqlite3
 from flask import Flask, render_template, request
 
+# Configuration
+DATABASE = '/tmp/init.db'
+DEBUG = True
+SECRET_KEY = 'z7zvPSta3PB3Hp2D'
+USERNAME = 'admin'
+PASSWORD = 'default'
+
 app = Flask(__name__)
+app.config.from_object(__name__)
+
+def connect_db():
+    return sqlite3.connect(app.config['DATABASE'])
 
 @app.route("/")
 def index():
