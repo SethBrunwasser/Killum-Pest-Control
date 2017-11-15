@@ -1,7 +1,7 @@
+from __future__ import print_function
 import sqlite3
 from flask import Flask, render_template, request, current_app, g
 from contextlib import closing
-from __future__ import print_function
 import httplib2
 import os
 
@@ -19,6 +19,7 @@ except ImportError:
 SCOPES = 'https://www.googleapis.com/auth/gmail.readonly'
 CLIENT_SECRET_FILE = 'client_secret.json'
 APPLICATION_NAME = 'KillumPestControlTest'
+
 
 def get_credentials():
     """Gets valid user credentials from storage.
@@ -121,14 +122,25 @@ def submitted():
         #sendEmail(request.estimateform['name'], request.estimateform['email'],
         #            request.estimateform['phone'], request.estimateform['subject'],
         #            request.estimateform['message'])
+        credentials = get_credentials()
+        http = credentials.authorize(httplib2.Http())
+        service = discovery.build('gmail', 'v1', http=http)
 
-        sendEmail()
+        new_msg = create_message('sbrunwasser1998@gmail.com', 'sbrunwasser1998@gmail.com', 'test', 'testing....')
+        sendEmail(service, 'me', new_msg)
     return render_template('submitted.html', error=error)
 
 
     return render_template("submitted.html")
 
-def sendEmail
+def sendEmail(service, user_id, message):
+
+    try:
+        message = (service.users().messages().send(userId=user_id, body=message)
+                    .execute())
+        return message
+    except errors.HttpError:
+        print('Error occured when sending message')
 
 def create_message(to, sender, subject, message_text):
   """Create a message for an email.
