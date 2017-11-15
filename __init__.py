@@ -23,10 +23,8 @@ APPLICATION_NAME = 'KillumPestControlTest'
 
 def get_credentials():
     """Gets valid user credentials from storage.
-
     If nothing has been stored, or if the stored credentials are invalid,
     the OAuth2 flow is completed to obtain the new credentials.
-
     Returns:
         Credentials, the obtained credential.
     """
@@ -64,30 +62,25 @@ def connect_db():
     rv = sqlite3.connect(current_app.config['DATABASE'])
     rv.row_factory = sqlite3.Row
     return rv
-
 def init_db():
     with closing(connect_db()) as db:
         with current_app.open_resource('schema.sql', mode='r') as f:
             db.cursor().executescript(f.read())
         db.commit()
-
 @app.before_request
 def before_request():
     g.db = connect_db()
-
 @app.teardown_request
 def teardown_request(exception):
     db = getattr(g, 'db', None)
     if db is not None:
         db.close()
-
 # Show Entries
 @app.route('/')
 def show_entries():
     cur = g.db.execute('select title, text from entries order by id desc')
     entries = [dict(title=row[0], text=row[1]) for row in cur.fetchall()]
     return render_template('show_entries.html', entries = entries)
-
 # Add new entry
 @app.route('/add', methods=['POST'])
 def add_entry():
@@ -144,13 +137,11 @@ def sendEmail(service, user_id, message):
 
 def create_message(to, sender, subject, message_text):
   """Create a message for an email.
-
   Args:
     sender: Email address of the sender.
     to: Email address of the receiver.
     subject: The subject of the email message.
     message_text: The text of the email message.
-
   Returns:
     An object containing a base64url encoded email object.
   """
