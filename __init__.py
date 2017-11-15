@@ -4,11 +4,13 @@ from flask import Flask, render_template, request, current_app, g
 from contextlib import closing
 import httplib2
 import os
+import base64
 
 from apiclient import discovery
 from oauth2client import client
 from oauth2client import tools
 from oauth2client.file import Storage
+from email.mime.text import MIMEText
 
 try:
     import argparse
@@ -128,12 +130,12 @@ def submitted():
 
 def sendEmail(service, user_id, message):
 
-    try:
-        message = (service.users().messages().send(userId=user_id, body=message)
-                    .execute())
-        return message
-    except errors.HttpError:
-        print('Error occured when sending message')
+    #try:
+    message = (service.users().messages().send(userId=user_id, body=message)
+               .execute())
+    return message
+    #except Exception as e:
+    #    print(e)
 
 def create_message(to, sender, subject, message_text):
   """Create a message for an email.
@@ -149,8 +151,9 @@ def create_message(to, sender, subject, message_text):
   message['to'] = to
   message['from'] = sender
   message['subject'] = subject
-  return {'raw': base64.urlsafe_b64encode(message.as_string())}
-
+  raw = base64.urlsafe_b64encode(message.as_bytes())
+  raw = raw.decode()
+  return {'raw': raw}
 
 if __name__ == '__main__':
     app.run(debug=True)
