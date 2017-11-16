@@ -121,7 +121,7 @@ def submitted():
         new_msg = create_message(request.form['email'], 'sbrunwasser1998@gmail.com', 
                                     'Killum Pest Control - ' + request.form['subject'], 
                                     'From ' + request.form['name'] + 
-                                    '\nPhone Number: ' + request.form['phone'] + '\n'
+                                    '\nPhone Number: ' + request.form['phone'] + '\n' +
                                      request.form['message'])
         sendEmail(service, 'me', new_msg)
     return render_template('submitted.html', error=error)
