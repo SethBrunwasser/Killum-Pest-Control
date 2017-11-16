@@ -118,7 +118,7 @@ def submitted():
         http = credentials.authorize(httplib2.Http())
         service = discovery.build('gmail', 'v1', http=http)
 
-        new_msg = create_message(request.form['email'], 'sbrunwasser1998@gmail.com', 
+        new_msg = create_message('sbrunwasser1998@gmail.com', request.form['email'], 
                                     'Killum Pest Control - ' + request.form['subject'], 
                                     'From ' + request.form['name'] + 
                                     '\nPhone Number: ' + request.form['phone'] + '\n' +
