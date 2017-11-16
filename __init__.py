@@ -18,7 +18,7 @@ try:
 except ImportError:
     flags = None
 
-SCOPES = 'https://www.googleapis.com/auth/gmail.readonly'
+SCOPES = 'https://www.googleapis.com/auth/gmail.send'
 CLIENT_SECRET_FILE = 'client_secret.json'
 APPLICATION_NAME = 'KillumPestControlTest'
 
@@ -35,7 +35,7 @@ def get_credentials():
     if not os.path.exists(credential_dir):
         os.makedirs(credential_dir)
     credential_path = os.path.join(credential_dir,
-                                   'gmail-python-quickstart.json')
+                                   'client_secret.json')
 
     store = Storage(credential_path)
     credentials = store.get()
@@ -114,14 +114,15 @@ def submitted():
     error = None
     if request.method == 'POST':
         # Send Email to owner
-        #sendEmail(request.estimateform['name'], request.estimateform['email'],
-        #            request.estimateform['phone'], request.estimateform['subject'],
-        #            request.estimateform['message'])
         credentials = get_credentials()
         http = credentials.authorize(httplib2.Http())
         service = discovery.build('gmail', 'v1', http=http)
 
-        new_msg = create_message('sbrunwasser1998@gmail.com', 'sbrunwasser1998@gmail.com', 'test', 'testing....')
+        new_msg = create_message(request.form['email'], 'sbrunwasser1998@gmail.com', 
+                                    'Killum Pest Control - ' + request.form['subject'], 
+                                    'From ' + request.form['name'] + 
+                                    '\nPhone Number: ' + request.form['phone'] + '\n'
+                                     request.form['message'])
         sendEmail(service, 'me', new_msg)
     return render_template('submitted.html', error=error)
 
