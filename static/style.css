@@ -281,6 +281,17 @@ animation-duration:2s;
   max-height: 350;
 }
 
+.content .termitetypes {
+  margin-right: 1%;
+  overflow: hidden;
+  background-position: center;
+  content:url(http://manvspest.com/wp-content/uploads/2016/08/types-of-termite.png);
+  float: left;
+  height: auto;
+  width: auto;
+  max-width: 50%;
+  max-height: 350;
+}
 .content .secondcard {
   margin-right: 1%;
   overflow: hidden;
