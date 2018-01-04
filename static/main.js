@@ -87,21 +87,18 @@ function validateform()
     alert("Please enter a message")
     passingFlag = false;
   }
-
-  //return passingFlag;
+  return passingFlag;
 }
 
 // Submit function
 function submitform()
 {
-  if(validateform() == true)
+  if(validateform() === true)
   {
-
-    function redirect()
-    {
-      setTimeout('window.location.href=submitted', 0);
-    }
-
-    redirect();
+     setTimeout('window.location.href=submitted', 0);
+  }
+  if(validateform() === false)
+  {
+    setTimeout('window.location.href=contact', 0);
   }
 }

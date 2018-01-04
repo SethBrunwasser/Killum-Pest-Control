@@ -52,7 +52,7 @@ def get_credentials():
 
 # Configuration
 DATABASE = '/tmp/init.db'
-DEBUG = True
+DEBUG = False
 SECRET_KEY = 'z7zvPSta3PB3Hp2D'
 USERNAME = 'admin'
 PASSWORD = 'default'
@@ -118,29 +118,46 @@ def submitted():
     error = None
     if request.method == 'POST':
         # Send Email to owner
-        credentials = get_credentials()
-        http = credentials.authorize(httplib2.Http())
-        service = discovery.build('gmail', 'v1', http=http)
+        if validateForm(request.form['email'], request.form['subject'], request.form['name'], 
+            request.form['phone'], request.form['message']):
+            credentials = get_credentials()
+            http = credentials.authorize(httplib2.Http())
+            service = discovery.build('gmail', 'v1', http=http)
 
-        new_msg = create_message('sbrunwasser1998@gmail.com', request.form['email'], 
-                                    'Killum Pest Control - ' + request.form['subject'], 
-                                    'From ' + request.form['name'] + 
-                                    '\nPhone Number: ' + request.form['phone'] + '\n' +
-                                     request.form['message'])
-        sendEmail(service, 'me', new_msg)
+            new_msg = create_message('sbrunwasser1998@gmail.com', request.form['email'], 
+                                        'Killum Pest Control - ' + request.form['subject'], 
+                                        'From ' + request.form['name'] + 
+                                        '\nPhone Number: ' + request.form['phone'] + '\n' +
+                                         request.form['message'])
+            sendEmail(service, 'me', new_msg)
+        else:
+            return render_template('contact.html')
     return render_template('submitted.html', error=error)
 
-
-    return render_template("submitted.html")
-
+def validateForm(email, subject, name, phone, message):
+    passingFlag = False
+    if '@' not in email or email == '':
+        return passingFlag
+    elif subject == '':
+        return passingFlag
+    elif name == '':
+        return passingFlag
+    elif phone == '' or not any(char.isdigit() for char in phone):
+        return passingFlag
+    elif subject == '':
+        return passingFlag
+    elif message == '':
+        return passingFlag
+    else:
+        return True
 def sendEmail(service, user_id, message):
-
     #try:
     message = (service.users().messages().send(userId=user_id, body=message)
                .execute())
     return message
     #except Exception as e:
     #    print(e)
+
 
 def create_message(to, sender, subject, message_text):
   """Create a message for an email.
@@ -161,4 +178,4 @@ def create_message(to, sender, subject, message_text):
   return {'raw': raw}
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=True)
