@@ -74,9 +74,9 @@ function validateform()
   {
     alert("Please enter a valid email")
     passingFlag = false;
-  } else if (phone == "" || isNaN(phone))
+  } else if (phone == "" || !phone.match(/^\d+$/))
   {
-    alert("Please enter a valid phone number with only numerical digits. \n Ex: 4801111111")
+    alert("Please enter a valid phone number with only numerical digits. \n Ex: 48022228888")
     passingFlag = false;
   } else if (subject == "")
   {

@@ -142,7 +142,7 @@ def validateForm(email, subject, name, phone, message):
         return passingFlag
     elif name == '':
         return passingFlag
-    elif phone == '' or not any(char.isdigit() for char in phone):
+    elif phone == '' or not phone.isdigit():
         return passingFlag
     elif subject == '':
         return passingFlag
